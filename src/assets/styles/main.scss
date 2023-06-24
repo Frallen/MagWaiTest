@@ -8,7 +8,7 @@ html {
 }
 
 body {
-  overflow-x: hidden;
+  // overflow-x: hidden;
   font-family: 'Montserrat', sans-serif;
   background: #131313;
 }
@@ -95,7 +95,7 @@ h6 {
 
     &-phone {
       cursor: pointer;
-      margin: 0 12px 0 0;
+
       padding: 10px 20px;
       border: 1px solid $gray;
       display: block;
@@ -107,6 +107,10 @@ h6 {
         filter: invert(41%) sepia(1%) saturate(0%) hue-rotate(221deg) brightness(92%) contrast(85%);
         transform: skew(-342deg);
       }
+    }
+
+    .button-call, &-phone {
+      margin: 0 12px;
     }
   }
 }
@@ -343,10 +347,11 @@ h6 {
 
       &-phone {
         text-align: center;
-        margin: 0 0 6px 0;
+        margin: 0 12px 6px 0;
         width: 100%;
       }
-      .button-call:after{
+
+      .button-call:after {
         display: none;
       }
     }
@@ -428,7 +433,7 @@ h6 {
   }
 }
 
-.button::after {
+.button-call::after {
   display: block;
   content: "";
   position: absolute;
@@ -452,6 +457,6 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-.hide{
+.hide {
   display: none;
 }

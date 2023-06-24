@@ -52,7 +52,6 @@ const useFetch = async (page: number) => {
     try {
         const snap = await axios.get(`https://jsonplaceholder.typicode.com/posts?_start=${page}&_limit=5`)
         Posts.push(...snap.data as postType[])
-        console.log(Posts)
         Posts.length >= 30 && loadMore.classList.add("hide")
         useRender()
     } catch (e) {
