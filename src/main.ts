@@ -1,5 +1,5 @@
 import "@/assets/styles/main.scss";
-import {stateModal} from "./composables/mixins.ts";
+import {checkModalForm, clearErrors, clearForm, stateModal, useAlert} from "./composables/mixins.ts";
 import {postType} from "./types/global.types.ts";
 
 import axios from "axios";
@@ -7,16 +7,45 @@ import axios from "axios";
 const hamburger = document.querySelector(".navbar-hamburger") as HTMLDivElement
 const mobile = document.querySelector(".navbar") as HTMLDivElement
 const loadMore = document.querySelector(".loadMore") as HTMLDivElement
+const modal = document.querySelector(".modal") as HTMLDivElement
+const modalClose = modal.querySelector(".modal-wrapper-header .icon") as HTMLDivElement
+const buttonCall = document.querySelectorAll(".button-call")
+const formCallBack = document.querySelector(".callback-form") as HTMLFormElement
+
 let Posts: postType[] = []
 let CurrentPage = 0
+
+buttonCall.forEach(p => {
+    p.addEventListener("click", () => {
+        stateModal(true, modal, "visible");
+    })
+})
+
+modalClose.addEventListener("click", () => {
+    stateModal(false, modal, "visible");
+    clearForm(formCallBack)
+})
+formCallBack.querySelectorAll("input").forEach(p => clearErrors(p))
+
+formCallBack.addEventListener("submit", (e) => {
+    const email = formCallBack.querySelector("#email") as HTMLInputElement
+    const name = formCallBack.querySelector("#name") as HTMLInputElement
+    e.preventDefault()
+    if (checkModalForm(name, email)) {
+        modalClose.click()
+        useAlert(true, "Заявка создана!", "Ожидайте звонка.")
+    }
+})
+
+
 hamburger.addEventListener("click", (e) => {
     if ((e.currentTarget as HTMLDivElement).classList.contains("opened")) {
         (e.currentTarget as HTMLDivElement).classList.remove("opened");
-        stateModal(false, mobile);
+        stateModal(false, mobile, "visible-nav");
 
     } else {
         (e.currentTarget as HTMLDivElement).classList.add("opened");
-        stateModal(true, mobile)
+        stateModal(true, mobile, "visible-nav")
     }
 })
 const useRender = () => {

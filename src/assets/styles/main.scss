@@ -8,7 +8,7 @@ html {
 }
 
 body {
-  // overflow-x: hidden;
+  overflow-x: hidden;
   font-family: 'Montserrat', sans-serif;
   background: #131313;
 }
@@ -285,7 +285,7 @@ h6 {
   opacity: 0;
 }
 
-.visible {
+.visible-nav {
   background: #131313;
   position: fixed;
   z-index: 999;
@@ -356,12 +356,115 @@ h6 {
       }
     }
   }
-
-
 }
 
-.opened {
+.modal {
+  background: #171717d4;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  transition: 0.3s ease;
+  visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: -999;
 
+  &-wrapper {
+    background: #fff;
+    padding: 20px 15px;
+    @include br(10px);
+    @media #{$md}{
+      margin: 0 10px;
+    }
+
+    &-header {
+      display: flex;
+      justify-content: flex-end;
+
+      .icon {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.visible {
+  visibility: visible;
+  opacity: 1;
+  @include trs(0.3s);
+  z-index: 999;
+}
+
+.callback-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 380px;
+  @include trs(0.3s);
+
+  .title {
+    text-align: center;
+    color: $black;
+    font-size: 1.5em;
+    @media #{$md}{
+      font-size: 1.3em;
+    }
+  }
+
+  .fields {
+    display: flex;
+    flex-direction: column;
+    margin: 30px 0;
+
+    &-item {
+      margin: 21px 0 0;
+
+      input {
+        width: 100%;
+        position: relative;
+
+        @include br(5px);
+
+        border: 1px solid $brown;
+        outline: none;
+        padding: 12px 14px;
+        font-style: normal;
+        font-size: 14px;
+        color: $black;
+
+        @include trs(0.3s);
+
+        @media #{$xs} {
+          font-size: 11px;
+        }
+      }
+
+      &-required {
+        color: $gray;
+        display: block;
+        font-weight: 600;
+        font-size: 14px;
+        margin-top: 5px;
+        @media #{$xs} {
+          font-size: 10px;
+        }
+      }
+
+      .invalid {
+        border: 2px solid red;
+
+        @include trs(0.3s);
+
+      }
+    }
+
+    &-item:first-child {
+      margin: 0;
+    }
+  }
 }
 
 .tilted {
