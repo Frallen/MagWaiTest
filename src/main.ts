@@ -74,19 +74,24 @@ const useRender = () => {
 }
 loadMore.addEventListener("click", async () => {
     CurrentPage = CurrentPage + 1
-    await useFetch(CurrentPage)
+    await useFetch(false,CurrentPage)
 })
 
-const useFetch = async (page: number) => {
+const useFetch = async (initial:boolean,page: number) => {
     try {
-        const snap = await axios.get(`https://jsonplaceholder.typicode.com/posts?_start=${page}&_limit=5`)
-        Posts.push(...snap.data as postType[])
-        Posts.length >= 30 && loadMore.classList.add("hide")
+        if(initial){
+            const snap = await axios.get(`https://jsonplaceholder.typicode.com/posts?_start=${page}&_limit=10`)
+            Posts.push(...snap.data as postType[])
+        }else{
+            const snap = await axios.get(`https://jsonplaceholder.typicode.com/posts?_start=${page}&_limit=5`)
+            Posts.push(...snap.data as postType[])
+            Posts.length >= 30 && loadMore.classList.add("hide")
+        }
         useRender()
     } catch (e) {
-
+        useAlert(false, "Произошла ошибка!", "Попробуйте позже.")
     }
 
 }
-document.addEventListener("DOMContentLoaded", async () => await useFetch(CurrentPage))
+document.addEventListener("DOMContentLoaded", async () => await useFetch(true,CurrentPage))
 
