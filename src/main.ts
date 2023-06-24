@@ -9,7 +9,7 @@ const mobile = document.querySelector(".navbar") as HTMLDivElement
 const loadMore = document.querySelector(".loadMore") as HTMLDivElement
 const modal = document.querySelector(".modal") as HTMLDivElement
 const modalClose = modal.querySelector(".modal-wrapper-header .icon") as HTMLDivElement
-const buttonCall = document.querySelectorAll(".button-call")
+const buttonCall = document.querySelectorAll(".call-me")
 const formCallBack = document.querySelector(".callback-form") as HTMLFormElement
 
 let Posts: postType[] = []
