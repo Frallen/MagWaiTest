@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@types/validator": "^13.7.17",
     "modern-normalize": "^1.1.0",
     "sass": "^1.63.4",
     "sass-loader": "^13.3.2",
