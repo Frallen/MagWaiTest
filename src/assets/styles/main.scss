@@ -65,12 +65,14 @@ h6 {
     }
 
     &-item {
+      position: relative;
       margin: 0 0 0 2.500em;
       font-size: 14px;
       font-weight: 700;
       line-height: 150%;
       color: #fff;
       text-decoration: none;
+      @include trs(0.3s);
       @media ('max-width:1600px') {
         font-size: 12px;
         margin: 0 0 0 1.7em;
@@ -78,6 +80,29 @@ h6 {
       @media #{$xxl}{
         font-size: 12px;
         margin: 0 0 0 1.5em;
+      }
+    }
+
+    &-item::after {
+      position: absolute;
+      width: 100%;
+      height: 0;
+      opacity: 0;
+      bottom: -22%;
+      left: 0;
+      background: $brown;
+      @include br(2px);
+      display: block;
+      @include trs(0.3s);
+      content: "";
+    }
+
+    &-item:hover {
+      @include trs(0.3s);
+
+      &::after {
+        opacity: 1;
+        height: 2px;
       }
     }
 
@@ -95,7 +120,6 @@ h6 {
 
     &-phone {
       cursor: pointer;
-
       padding: 10px 20px;
       border: 1px solid $gray;
       display: block;
@@ -106,6 +130,16 @@ h6 {
       img {
         filter: invert(41%) sepia(1%) saturate(0%) hue-rotate(221deg) brightness(92%) contrast(85%);
         transform: skew(-342deg);
+      }
+    }
+
+    &-phone:hover {
+      @include trs(0.4s);
+      border: 1px solid $black;
+      background: #fff;
+
+      img {
+        filter: invert(100%) sepia(97%) saturate(20%) hue-rotate(208deg) brightness(105%) contrast(100%);
       }
     }
 
@@ -191,7 +225,7 @@ h6 {
     }
 
     &-item {
-      @include trs(0.3s);
+      animation: fade 0.3s linear;
       margin: 30px 0 0 30px;
       height: 621px;
       width: calc(100% / 5 - 30px);
@@ -277,6 +311,15 @@ h6 {
         //  margin: 0 0 25px 0;
       }
     }
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
@@ -504,7 +547,15 @@ h6 {
 }
 
 .button-primary {
+  border: 1px solid transparent;
   background: $black;
+  @include trs(0.3s);
+}
+
+.button-primary:hover {
+  border: 1px solid $black;
+  background: #fff;
+  color: $black;
   @include trs(0.3s);
 }
 
