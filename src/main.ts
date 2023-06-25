@@ -18,6 +18,7 @@ let CurrentPage = 0
 buttonCall.forEach(p => {
     p.addEventListener("click", () => {
         stateModal(true, modal, "visible");
+        stateModal(false, mobile, "visible-nav");
     })
 })
 
